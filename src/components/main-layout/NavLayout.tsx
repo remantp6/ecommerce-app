@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { Layout, Menu, Drawer, Grid, Space, MenuProps } from "antd";
 import {
+  CloseOutlined,
   MenuOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import TopHeader from "../TopHeader";
+import { Link } from "react-router-dom";
 
 // types for navbar props
 interface NavBarProps {
   children: React.ReactNode;
+  header?: React.ReactNode;
 }
 
 // types for menu items
@@ -24,15 +26,36 @@ const { useBreakpoint } = Grid;
 
 // menu items for the navbar
 const items: MenuItem[] = [
-  { label: "Men", key: "men" },
-  { label: "Women", key: "women" },
-  { label: "Kids", key: "kids" },
+  {
+    label: (
+      <Link to="/" className="!text-black">
+        Men
+      </Link>
+    ),
+    key: "men",
+  },
+  {
+    label: (
+      <Link to="/women" className="!text-black">
+        Women
+      </Link>
+    ),
+    key: "women",
+  },
+  {
+    label: (
+      <Link to="/kids" className="!text-black">
+        Kids
+      </Link>
+    ),
+    key: "kids",
+  },
 ];
 
-const NavLayout: React.FC<NavBarProps> = ({ children }) => {
+const NavLayout: React.FC<NavBarProps> = ({ children, header }) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const screens = useBreakpoint();
   const [current, setCurrent] = useState("men");
+  const screens = useBreakpoint();
 
   // function to handle menu item click
   const onClick: MenuProps["onClick"] = (e) => {
@@ -42,8 +65,8 @@ const NavLayout: React.FC<NavBarProps> = ({ children }) => {
 
   return (
     <>
-      <TopHeader />
-      <Layout style={{ minHeight: "100vh" }}>
+      {header}
+      <Layout>
         <Header
           style={{
             display: "flex",
@@ -52,7 +75,7 @@ const NavLayout: React.FC<NavBarProps> = ({ children }) => {
             background: "#fff",
             boxShadow: "0 2px 8px #f0f1f2",
           }}
-          className="!px-[20px] md:!ps-[20px] md:!pe-[40px]"
+         className="!px-[20px] md:!ps-[20px] md:!pe-[40px]"
         >
           {/* Left Nav or Hamburger */}
           {screens.md ? (
@@ -66,30 +89,58 @@ const NavLayout: React.FC<NavBarProps> = ({ children }) => {
               />
             </div>
           ) : (
-            <MenuOutlined style={{ fontSize: 18 }} onClick={() => setDrawerVisible(true)}/>
+            <MenuOutlined
+              style={{ fontSize: 22 }}
+              onClick={() => setDrawerVisible(true)}
+            />
           )}
 
           {/* Right Icons */}
-          <Space size="middle">
-            <SearchOutlined style={{ fontSize: 18 }} />
-            <ShoppingCartOutlined style={{ fontSize: 18 }} />
-            <UserOutlined style={{ fontSize: 18 }} />
+          <Space size="large">
+            <SearchOutlined
+              style={{ fontSize: 22 }}
+              className="!cursor-pointer !text-black"
+            />
+            <Link to="/cart" className="!text-black">
+              <ShoppingCartOutlined
+                style={{ fontSize: 22 }}
+                className="!cursor-pointer"
+              />
+            </Link>
+            <Link to="/login" className="!text-black">
+              <UserOutlined
+                style={{ fontSize: 22 }}
+                className="!cursor-pointer"
+              />
+            </Link>
           </Space>
         </Header>
 
         {/* Mobile Drawer */}
         <Drawer
-          title="Navigation"
+          // title="Navigation"
+          closeIcon={
+            <CloseOutlined
+              style={{ fontSize: 22 }}
+              className="!cursor-pointer"
+            />
+          }
           placement="right"
           onClose={() => setDrawerVisible(false)}
           open={drawerVisible}
           width={"100%"}
+          styles={{
+            body: { padding: "14px 0 0 0" },
+          }}
         >
           <Menu mode="vertical" items={items} />
         </Drawer>
 
         <Content
-          style={{ backgroundColor: "#ffff", minHeight: "calc(100vh - 150px)" }}
+          style={{
+            backgroundColor: "#ffffff",
+            minHeight: "calc(100dvh - 165px)",
+          }}
           className="md:!pt-[22px]"
         >
           {children}

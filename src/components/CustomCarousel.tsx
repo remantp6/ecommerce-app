@@ -12,7 +12,8 @@ const CustomCarousel: React.FC = () => (
       alt="image1"
      width={'100%'}
      
-      className='!h-[calc(100dvh-400px)] md:!h-[calc(100dvh-150px)] !object-cover'
+     className="!h-[calc(100dvh-100px-64px)] md:!h-[calc(100dvh-100px-64px)] !object-cover"
+
     />
     <Image
       preview={false}
@@ -20,7 +21,8 @@ const CustomCarousel: React.FC = () => (
       alt="image2"
      width={'100%'}
      
-      className='!h-[calc(100dvh-400px)] md:!h-[calc(100dvh-150px)] !object-cover'
+     className="!h-[calc(100dvh-100px-64px)] md:!h-[calc(100dvh-100px-64px)] !object-cover"
+
     />
     <Image
       preview={false}
@@ -28,7 +30,8 @@ const CustomCarousel: React.FC = () => (
       alt="image3"
      width={'100%'}
      
-      className='!h-[calc(100dvh-400px)] md:!h-[calc(100dvh-150px)] !object-cover'
+     className="!h-[calc(100dvh-100px-64px)] md:!h-[calc(100dvh-100px-64px)] !object-cover"
+
     />
   </Carousel>
 );
