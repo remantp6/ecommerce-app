@@ -1,0 +1,28 @@
+import { Row, Col } from "antd";
+import NavLayout from "../components/main-layout/NavLayout";
+import AddPasswordForm from "../components/AddPasswordForm";
+
+const VerifyEmail = () => {
+  return (
+    <NavLayout>
+      <div
+        style={{
+          minHeight: "calc(100vh - 165px)",
+          backgroundColor: "#f0f2f5",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "1rem",
+        }}
+      >
+        <Row justify="center" style={{ width: "100%" }}>
+          <Col xs={24} sm={20} md={16} lg={8}>
+            <AddPasswordForm />
+          </Col>
+        </Row>
+      </div>
+    </NavLayout>
+  );
+};
+
+export default VerifyEmail;
