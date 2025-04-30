@@ -1,8 +1,8 @@
 import { Row, Col } from "antd";
-import ForgetPasswordForm from "../components/ForgetPasswordForm";
 import NavLayout from "../components/main-layout/NavLayout";
+import VerifyEmailCard from "../components/EmailVerifyCard";
 
-const ForgetPassword = () => {
+const VerifyEmail = () => {
   return (
     <NavLayout>
       <div
@@ -17,7 +17,7 @@ const ForgetPassword = () => {
       >
         <Row justify="center" style={{ width: "100%" }}>
           <Col xs={24} sm={20} md={16} lg={8}>
-            <ForgetPasswordForm />
+            <VerifyEmailCard />
           </Col>
         </Row>
       </div>
@@ -25,4 +25,4 @@ const ForgetPassword = () => {
   );
 };
 
-export default ForgetPassword;
+export default VerifyEmail;

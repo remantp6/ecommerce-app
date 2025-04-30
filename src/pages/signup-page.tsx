@@ -51,7 +51,7 @@ const SignUp = () => {
           xs={24} md={12}
           className="!flex !justify-center !items-center !mb-8 !mt-2 md:!mb-0 md:!mt-0"
         >
-          <Row className="!bg-white !p-4 lg:!p-8 !rounded-lg !flex !items-center !w-full max-w-[580px]">
+          <Row className="!bg-white !p-4 lg:!p-8 !rounded-lg !flex !items-center !w-full max-w-[580px] !border-2 !border-gray-300">
             <Row className="!w-full !flex !flex-col !items-start !space-y-1">
               <Typography.Text className="!text-lg sm:!text-2xl !font-bold !text-black">
                 Sign Up

@@ -1,11 +1,14 @@
 import { Button, Form, Input, Row, Typography } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const { Title, Paragraph } = Typography;
 
 const ForgetPasswordForm = () => {
+  const navigate = useNavigate();
+
   const onFinish = (values: { email: string }) => {
     console.log("Email submitted:", values.email);
+    navigate("/verify-email");
   };
 
   return (
@@ -13,15 +16,17 @@ const ForgetPasswordForm = () => {
       name="forget-password-form"
       layout="vertical"
       onFinish={onFinish}
-      className="!w-full !bg-white !rounded-lg !p-5 md:!p-7"
+      className="!w-full !bg-white !rounded-lg !p-5 md:!p-7 !border-2 !border-gray-300"
     >
+      <div  style={{ borderBottom: "1px solid #E4E7EC", marginBottom: '20px'}}>
       <Title level={5} className="!text-center">
-        Forgot your password?
+        Reset your password
       </Title>
-      <Paragraph className="!text-md !text-gray-500 !text-center">
+      <Paragraph className="!text-center !text-[14px] md:!text-[16px] !text-gray-500 !mb-[20px]">
         Enter your email address below and we will send you a link to reset your
         password.
       </Paragraph>
+      </div>
 
       <Form.Item
         label="Email"
@@ -49,7 +54,7 @@ const ForgetPasswordForm = () => {
 
       <Row justify="center" className="!mt-5">
       <Link
-        to="/signin"
+        to="/login"
         className="!text-sm !font-normal !text-black hover:!cursor-pointer"
       >
        Back to Sign In
