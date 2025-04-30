@@ -7,6 +7,8 @@ import Cart from "./pages/cart-page";
 import Login from "./pages/login-page";
 import SignUp from "./pages/signup-page";
 import ForgetPassword from "./pages/forget-password-page";
+import VerifyEmail from "./pages/email-verify";
+import AddPassword from "./pages/add-password-page";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/add-password" element={<AddPassword />} />
       </Routes>
     </BrowserRouter>
   );
