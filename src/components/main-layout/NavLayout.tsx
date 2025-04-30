@@ -7,7 +7,7 @@ import {
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // types for navbar props
 interface NavBarProps {
@@ -28,7 +28,7 @@ const { useBreakpoint } = Grid;
 const items: MenuItem[] = [
   {
     label: (
-      <Link to="/" className="!text-black">
+      <Link to="/men" className="!text-black">
         Men
       </Link>
     ),
@@ -54,13 +54,22 @@ const items: MenuItem[] = [
 
 const NavLayout: React.FC<NavBarProps> = ({ children, header }) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const [current, setCurrent] = useState("men");
   const screens = useBreakpoint();
+  const location = useLocation(); // ✅ Get current route
+
+  // ✅ Determine active tab based on pathname
+  const currentPath = location.pathname;
+  const currentTab = currentPath.startsWith("/men")
+    ? "men"
+    : currentPath.startsWith("/women")
+    ? "women"
+    : currentPath.startsWith("/kids")
+    ? "kids"
+    : ""; // No active tab if not matched
 
   // function to handle menu item click
   const onClick: MenuProps["onClick"] = (e) => {
     console.log("click ", e);
-    setCurrent(e.key);
   };
 
   return (
@@ -75,7 +84,7 @@ const NavLayout: React.FC<NavBarProps> = ({ children, header }) => {
             background: "#fff",
             boxShadow: "0 2px 8px #f0f1f2",
           }}
-         className="!px-[20px] md:!ps-[20px] md:!pe-[40px]"
+          className="!px-[20px] md:!ps-[20px] md:!pe-[40px]"
         >
           {/* Left Nav or Hamburger */}
           {screens.md ? (
@@ -84,7 +93,7 @@ const NavLayout: React.FC<NavBarProps> = ({ children, header }) => {
                 mode="horizontal"
                 onClick={onClick}
                 items={items}
-                selectedKeys={[current]}
+                selectedKeys={currentTab ? [currentTab] : []} // ✅ Dynamically highlight
                 style={{ borderBottom: "none" }}
               />
             </div>
@@ -118,7 +127,6 @@ const NavLayout: React.FC<NavBarProps> = ({ children, header }) => {
 
         {/* Mobile Drawer */}
         <Drawer
-          // title="Navigation"
           closeIcon={
             <CloseOutlined
               style={{ fontSize: 22 }}
@@ -133,7 +141,11 @@ const NavLayout: React.FC<NavBarProps> = ({ children, header }) => {
             body: { padding: "14px 0 0 0" },
           }}
         >
-          <Menu mode="vertical" items={items} />
+          <Menu
+            mode="vertical"
+            items={items}
+            onClick={() => setDrawerVisible(false)}
+          />
         </Drawer>
 
         <Content
