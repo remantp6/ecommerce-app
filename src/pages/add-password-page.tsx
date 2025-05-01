@@ -6,9 +6,8 @@ const VerifyEmail = () => {
   return (
     <NavLayout>
       <div
+        className="h-[calc(100dvh-133px)] bg-[#f0f2f5]"
         style={{
-          minHeight: "calc(100vh - 165px)",
-          backgroundColor: "#f0f2f5",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

@@ -13,6 +13,7 @@ import { Link, useLocation } from "react-router-dom";
 interface NavBarProps {
   children: React.ReactNode;
   header?: React.ReactNode;
+  isNoAuthPage?: boolean;
 }
 
 // types for menu items
@@ -52,7 +53,11 @@ const items: MenuItem[] = [
   },
 ];
 
-const NavLayout: React.FC<NavBarProps> = ({ children, header }) => {
+const NavLayout: React.FC<NavBarProps> = ({
+  children,
+  header,
+  isNoAuthPage,
+}) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const screens = useBreakpoint();
   const location = useLocation(); // ✅ Get current route
@@ -93,7 +98,7 @@ const NavLayout: React.FC<NavBarProps> = ({ children, header }) => {
                 mode="horizontal"
                 onClick={onClick}
                 items={items}
-                selectedKeys={currentTab ? [currentTab] : []} // ✅ Dynamically highlight
+                selectedKeys={currentTab ? [currentTab] : []}
                 style={{ borderBottom: "none" }}
               />
             </div>
@@ -148,15 +153,11 @@ const NavLayout: React.FC<NavBarProps> = ({ children, header }) => {
           />
         </Drawer>
 
-        <Content
-          style={{
-            backgroundColor: "#ffffff",
-            minHeight: "calc(100dvh - 165px)",
-          }}
-          className="md:!pt-[22px]"
-        >
-          {children}
-        </Content>
+        {isNoAuthPage ? (
+          <Content className=" md:!pt-[22px] !bg-white">{children}</Content>
+        ) : (
+          <Content className="!bg-white">{children}</Content>
+        )}
 
         <Footer style={{ textAlign: "center" }}>
           ©2025 Your Company. All rights reserved.

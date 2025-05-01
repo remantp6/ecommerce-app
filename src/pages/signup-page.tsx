@@ -25,12 +25,11 @@ const SignUp = () => {
   return (
     <NavLayout>
       <Row
-        style={{ minHeight: "calc(100vh - 165px)", backgroundColor: "#f0f2f5" }}
-        className="!px-4 lg:!px-6"
+        className="!min-h-[calc(100dvh-133px)] !bg-[#f0f2f5] !px-4 lg:!px-6"
       >
         {/* Left Side Image */}
         <Col
-          xs={24} md={12}
+          xs={24} lg={12}
           style={{
             display: "flex",
             alignItems: "center",
@@ -48,8 +47,8 @@ const SignUp = () => {
 
         {/* Right Side Form */}
         <Col
-          xs={24} md={12}
-          className="!flex !justify-center !items-center !mb-8 !mt-2 md:!mb-0 md:!mt-0"
+          xs={24} lg={12}
+          className="!flex !justify-center !items-center !mb-16 !mt-2 md:!mb-28 lg:!mb-0 md:!mt-0"
         >
           <Row className="!bg-white !p-4 lg:!p-8 !rounded-lg !flex !items-center !w-full max-w-[580px] !border-2 !border-gray-300">
             <Row className="!w-full !flex !flex-col !items-start !space-y-1">

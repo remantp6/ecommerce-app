@@ -4,7 +4,7 @@ import TopHeader from "../components/TopHeader";
 
 const Home = () => {
   return (
-    <NavLayout header={<TopHeader />}>
+    <NavLayout header={<TopHeader />} isNoAuthPage>
       <CustomCarousel />
     </NavLayout>
   );
