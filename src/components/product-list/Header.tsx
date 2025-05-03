@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = ({label, desc}) => {
   const isXLOrAbove = screens.lg;
 
   return (
-    <Row justify={"center"} className="md:!pt-5 lg:!pt-12 xl:!pt-14">
+    <Row justify={"center"} className="!pt-5 lg:!pt-12 xl:!pt-14 !px-8 md:!px-0">
       <Col className="!text-center">
         <Title level={isXLOrAbove ? 1 : 3} className="!uppercase !mb-1">{label}</Title>
         <Text className="!text-gray-400 lg:!text-xl !font-[400]">{desc}</Text>
