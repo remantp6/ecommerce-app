@@ -9,6 +9,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Link, useLocation } from "react-router-dom";
+import FooterComponent from "../common/FooterComponent";
 
 // types for navbar props
 interface NavBarProps {
@@ -21,7 +22,7 @@ interface NavBarProps {
 type MenuItem = Required<MenuProps>["items"][number];
 
 // destructure Layout components
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 // destructure Grid components
 const { useBreakpoint } = Grid;
@@ -173,9 +174,7 @@ const NavLayout: React.FC<NavBarProps> = ({
           <Content className="!bg-white">{children}</Content>
         )}
 
-        <Footer style={{ textAlign: "center" }}>
-          ©2025 Your Company. All rights reserved.
-        </Footer>
+        <FooterComponent/>
       </Layout>
     </>
   );

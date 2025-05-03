@@ -11,7 +11,7 @@ const { useBreakpoint } = Grid;
 
 const Header: React.FC<HeaderProps> = ({label, desc}) => {
     const screens = useBreakpoint();
-  const isXLOrAbove = screens.lg;
+    const isXLOrAbove = screens.lg;
 
   return (
     <Row justify={"center"} className="!pt-5 lg:!pt-12 xl:!pt-14 !px-8 md:!px-0">
