@@ -1,5 +1,5 @@
 import { Row, Col } from "antd";
-import ForgetPasswordForm from "../components/ForgetPasswordForm";
+import ForgetPasswordForm from "../components/auth/ForgetPasswordForm";
 import NavLayout from "../components/main-layout/NavLayout";
 
 const ForgetPassword = () => {

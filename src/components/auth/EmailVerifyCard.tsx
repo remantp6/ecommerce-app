@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Typography, Image } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import email from "../assets/email.png";
+import email from "../../assets/email.png";
 
 const { Title, Paragraph } = Typography;
 

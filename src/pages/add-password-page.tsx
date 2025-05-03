@@ -1,6 +1,6 @@
 import { Row, Col } from "antd";
 import NavLayout from "../components/main-layout/NavLayout";
-import AddPasswordForm from "../components/AddPasswordForm";
+import AddPasswordForm from "../components/auth/AddPasswordForm";
 
 const VerifyEmail = () => {
   return (

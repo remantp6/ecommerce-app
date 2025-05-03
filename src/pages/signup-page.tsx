@@ -2,7 +2,7 @@ import { Col, Image, Row, Typography } from "antd";
 import NavLayout from "../components/main-layout/NavLayout";
 import main from "../assets/main.png";
 import type { FormProps } from "antd";
-import SignUpForm from "../components/SignupForm";
+import SignUpForm from "../components/auth/SignupForm";
 
 type FieldType = {
   email?: string;

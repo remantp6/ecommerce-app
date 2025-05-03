@@ -1,6 +1,6 @@
 import { Row, Col } from "antd";
 import NavLayout from "../components/main-layout/NavLayout";
-import VerifyEmailCard from "../components/EmailVerifyCard";
+import VerifyEmailCard from "../components/auth/EmailVerifyCard";
 
 const VerifyEmail = () => {
   return (

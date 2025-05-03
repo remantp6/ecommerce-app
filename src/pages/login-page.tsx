@@ -2,7 +2,7 @@ import { Col, Image, Row, Typography } from "antd";
 import NavLayout from "../components/main-layout/NavLayout";
 import main from "../assets/main.png";
 import type { FormProps } from "antd";
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/auth/LoginForm";
 
 type FieldType = {
   username?: string;
