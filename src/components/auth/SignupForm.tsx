@@ -46,7 +46,17 @@ const SignUpForm: React.FC<SignupFormProps> = ({
       <Form.Item<FieldType>
         label="Password"
         name="password"
-        rules={[{ required: true, message: "Please input your password!" }]}
+        rules={[
+          { required: true, message: "Please input your password!" },
+          {
+            validator: (_, value) =>
+              !value || value.length >= 8
+                ? Promise.resolve()
+                : Promise.reject(
+                    new Error("Password must be at least 8 characters!")
+                  ),
+          },
+        ]}
         hasFeedback
       >
         <Input.Password
