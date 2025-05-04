@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Layout, Menu, Drawer, Grid, Space, MenuProps } from "antd";
 import {
   CloseOutlined,
-  HomeOutlined,
   MenuOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
@@ -10,6 +9,10 @@ import {
 } from "@ant-design/icons";
 import { Link, useLocation } from "react-router-dom";
 import FooterComponent from "../common/FooterComponent";
+import { Product } from "../product-list/ProductList";
+import { products } from "../../data/products";
+import { items } from "./navItems";
+import SearchModal from "../product-list/SearchModal";
 
 // types for navbar props
 interface NavBarProps {
@@ -18,57 +21,20 @@ interface NavBarProps {
   isNoAuthPage?: boolean;
 }
 
-// types for menu items
-type MenuItem = Required<MenuProps>["items"][number];
-
 // destructure Layout components
 const { Header, Content } = Layout;
 
 // destructure Grid components
 const { useBreakpoint } = Grid;
 
-// menu items for the navbar
-const items: MenuItem[] = [
-  {
-    label: (
-      <Link to="/" className="!text-black">
-        <HomeOutlined style={{ fontSize: 24 }} />
-      </Link>
-    ),
-    key: "home",
-  },
-  {
-    label: (
-      <Link to="/men" className="!text-black">
-        Men
-      </Link>
-    ),
-    key: "men",
-  },
-  {
-    label: (
-      <Link to="/women" className="!text-black">
-        Women
-      </Link>
-    ),
-    key: "women",
-  },
-  {
-    label: (
-      <Link to="/kids" className="!text-black">
-        Kids
-      </Link>
-    ),
-    key: "kids",
-  },
-];
-
 const NavLayout: React.FC<NavBarProps> = ({
   children,
   header,
   isNoAuthPage,
 }) => {
-  const [drawerVisible, setDrawerVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const screens = useBreakpoint();
   const location = useLocation(); //Get current route
 
@@ -87,10 +53,31 @@ const NavLayout: React.FC<NavBarProps> = ({
   const tabPaths = ["/", "/men", "/women", "/kids"];
   const isMainTabPage = tabPaths.includes(currentPath);
 
+  // function to handle modal open
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // function to handle modal close
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    setSearchQuery("");
+  };
+
   // function to handle menu item click
   const onClick: MenuProps["onClick"] = (e) => {
     console.log("click ", e);
   };
+
+  // Filter products based on search query
+  const filteredProducts = products?.filter((product: Product) => {
+    const query = searchQuery.toLowerCase();
+    return (
+      product.product_name.toLowerCase().includes(query) ||
+      product.category.toLowerCase().includes(query) ||
+      product?.sub_category?.toLowerCase().includes(query)
+    );
+  });
 
   return (
     <>
@@ -127,6 +114,7 @@ const NavLayout: React.FC<NavBarProps> = ({
           {/* Right Icons */}
           <Space size="large">
             <SearchOutlined
+              onClick={showModal}
               style={{ fontSize: 22 }}
               className="!cursor-pointer !text-black"
             />
@@ -145,6 +133,16 @@ const NavLayout: React.FC<NavBarProps> = ({
           </Space>
         </Header>
 
+        {/* search modal */}
+        {currentPath === "/" && (
+          <SearchModal
+            isOpen={isModalOpen}
+            products={filteredProducts}
+            searchQuery={searchQuery}
+            onChange={setSearchQuery}
+            onClose={handleCancel}
+          />
+        )}
         {/* Mobile Drawer */}
         <Drawer
           closeIcon={
@@ -174,7 +172,7 @@ const NavLayout: React.FC<NavBarProps> = ({
           <Content className="!bg-white">{children}</Content>
         )}
 
-        <FooterComponent/>
+        <FooterComponent />
       </Layout>
     </>
   );

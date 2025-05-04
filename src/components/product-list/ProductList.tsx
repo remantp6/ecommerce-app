@@ -4,13 +4,14 @@ import ProductCard from "./ProductCard";
 import Header from "./Header";
 
 // types for the product
-interface Product {
+export interface Product {
   id: number;
   product_name: string;
   short_desc: string;
   image: string;
   price: string;
   category: string;
+  sub_category?: string;
 }
 
 // types for the product list props
