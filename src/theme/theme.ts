@@ -1,4 +1,7 @@
 export const theme = {
+  token: {
+    colorBgTextHover: 'transparent',
+  },
     components: {
       Menu: {
         colorPrimary: '#000000',

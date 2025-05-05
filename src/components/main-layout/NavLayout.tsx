@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Menu, Drawer, Grid, Space, MenuProps } from "antd";
 import {
   CloseOutlined,
@@ -35,6 +35,7 @@ const NavLayout: React.FC<NavBarProps> = ({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isFixed, setIsFixed] = useState<boolean>(false);
   const screens = useBreakpoint();
   const location = useLocation(); //Get current route
 
@@ -52,6 +53,20 @@ const NavLayout: React.FC<NavBarProps> = ({
 
   const tabPaths = ["/", "/men", "/women", "/kids"];
   const isMainTabPage = tabPaths.includes(currentPath);
+
+  // Add scroll event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 76) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // function to handle modal open
   const showModal = () => {
@@ -89,7 +104,13 @@ const NavLayout: React.FC<NavBarProps> = ({
             justifyContent: "space-between",
             alignItems: "center",
             background: "#fff",
-            boxShadow: "0 2px 8px #f0f1f2",
+           // boxShadow: "0 2px 8px #f0f1f2",
+            position: isFixed ? "fixed" : "static",
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 1000,
+            transition: "all 0.3s ease",
           }}
           className="!px-[20px] md:!ps-[20px] md:!pe-[40px]"
         >
