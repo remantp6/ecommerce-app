@@ -48,8 +48,8 @@ const CustomCarousel: React.FC = () => {
           className="!h-[calc(100dvh-208px)] md:!h-[calc(100dvh-170px)] !object-cover"
         />
         <div className="!absolute !left-8 !bottom-8 md:!left-14 md:!bottom-14 text-white max-w-[80%] drop-shadow-lg">
-          <Title level={isMdOrAbove ? 2 : 4} className="!uppercase !text-white !m-0">{slide.title}</Title>
-          <Paragraph className="!text-white !mt-1 !mb-0 !text-lg md:text-xl">{slide.description}</Paragraph>
+          <Title level={isMdOrAbove ? 1 : 4} className="!uppercase !text-white !m-0">{slide.title}</Title>
+          <Paragraph className="!text-white !mt-1 !mb-0 !text-lg md:!text-xl">{slide.description}</Paragraph>
         </div>
     </div>
   ))}

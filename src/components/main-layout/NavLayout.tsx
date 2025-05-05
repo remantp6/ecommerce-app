@@ -41,15 +41,16 @@ const NavLayout: React.FC<NavBarProps> = ({
 
   // Determine active tab based on pathname
   const currentPath = location.pathname;
-  const currentTab = currentPath.startsWith("/")
-    ? "home"
-    : currentPath.startsWith("/men")
-    ? "men"
-    : currentPath.startsWith("/women")
-    ? "women"
-    : currentPath.startsWith("/kids")
-    ? "kids"
-    : ""; // No active tab if not matched
+  const currentTab = currentPath.startsWith("/men")
+  ? "men"
+  : currentPath.startsWith("/women")
+  ? "women"
+  : currentPath.startsWith("/kids")
+  ? "kids"
+  : currentPath === "/"
+  ? "home"
+  : "";
+
 
   const tabPaths = ["/", "/men", "/women", "/kids"];
   const isMainTabPage = tabPaths.includes(currentPath);
