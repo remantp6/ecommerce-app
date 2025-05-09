@@ -25,3 +25,6 @@ dist-ssr
 
 # add assets folder to gitignore
 src/assets/
+
+# Ignore environment files
+.env
