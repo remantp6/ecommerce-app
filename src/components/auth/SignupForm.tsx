@@ -2,12 +2,14 @@ import { Button, Form, Input, Row, Typography } from "antd";
 import { Link } from "react-router-dom";
 import type { FormProps } from "antd";
 
+// define types for the form fields
 type FieldType = {
   email?: string;
   password?: string;
   confirm_password?: string;
 };
 
+// define the props for the SignupForm component
 interface SignupFormProps {
   onFinish: FormProps<FieldType>["onFinish"];
   onFinishFailed: FormProps<FieldType>["onFinishFailed"];

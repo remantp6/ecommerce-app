@@ -3,6 +3,8 @@ import NavLayout from "../components/main-layout/NavLayout";
 import main from "../assets/main.png";
 import type { FormProps } from "antd";
 import SignUpForm from "../components/auth/SignupForm";
+import { useMutation } from "@tanstack/react-query";
+import { signup } from "../api/authApi";
 
 type FieldType = {
   email?: string;
@@ -11,30 +13,41 @@ type FieldType = {
 };
 
 const SignUp = () => {
-    const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-      console.log("Login form values:", values);
-      // Implement your login logic here
-    };
-  
-    const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
-      errorInfo
-    ) => {
-      console.log("Failed:", errorInfo);
-    };
+
+  // Mutation for signup
+  const signupMutation = useMutation({
+    mutationFn: signup,
+    onSuccess: (data) => {
+      alert(data.message);
+    },
+  });
+
+  // Form submission handler
+  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+    const { email, password, confirm_password } = values;
+    if (email && password && confirm_password) {
+      signupMutation.mutate({ email, password, confirm_password });
+    }
+  };
+
+  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+    errorInfo
+  ) => {
+    console.log("Failed:", errorInfo);
+  };
 
   return (
     <NavLayout>
-      <Row
-        className="!min-h-[calc(100dvh-133px)] !bg-[#f0f2f5] !px-4 lg:!px-6"
-      >
+      <Row className="!min-h-[calc(100dvh-133px)] !bg-[#f0f2f5] !px-4 lg:!px-6">
         {/* Left Side Image */}
         <Col
-          xs={24} lg={12}
+          xs={24}
+          lg={12}
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-         //   padding: "20px"
+            //   padding: "20px"
           }}
         >
           <Image
@@ -47,7 +60,8 @@ const SignUp = () => {
 
         {/* Right Side Form */}
         <Col
-          xs={24} lg={12}
+          xs={24}
+          lg={12}
           className="!flex !justify-center !items-center !mb-16 !mt-2 md:!mb-28 lg:!mb-0 md:!mt-0"
         >
           <Row className="!bg-white !p-4 lg:!p-8 !rounded-lg !flex !items-center !w-full max-w-[580px] !border-2 !border-gray-300">
