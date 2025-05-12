@@ -2,6 +2,7 @@
 
 ### Technologies used
 
+* TypeScript
 * React
 * Antd
 * React Router
