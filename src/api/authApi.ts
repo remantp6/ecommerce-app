@@ -1,6 +1,7 @@
+import { ApiSuccessResponse } from "../types/auth";
 import axiosInstance from "./axiosInstance";
 import { AxiosError, AxiosResponse } from "axios";
-import { ApiSuccessResponse } from "../../types/auth";
+
 
 // define types for the signup form fields
 interface SignupPayload {
@@ -13,7 +14,7 @@ interface SignupPayload {
 export const signup = async (payload: SignupPayload): Promise<ApiSuccessResponse> => {
   try {
     const response: AxiosResponse<ApiSuccessResponse> =
-      await axiosInstance.post("/email/signup/", payload);
+      await axiosInstance.post("/email-signup/", payload);
 
     return response.data;
   } catch (error) {
