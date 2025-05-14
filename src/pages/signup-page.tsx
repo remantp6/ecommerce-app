@@ -3,8 +3,7 @@ import NavLayout from "../components/main-layout/NavLayout";
 import main from "../assets/main.png";
 import type { FormProps } from "antd";
 import SignUpForm from "../components/auth/SignupForm";
-import { useMutation } from "@tanstack/react-query";
-import { signup } from "../api/authApi";
+import { useNavigate } from "react-router-dom";
 
 type FieldType = {
   email?: string;
@@ -13,20 +12,14 @@ type FieldType = {
 };
 
 const SignUp = () => {
-
-  // Mutation for signup
-  const signupMutation = useMutation({
-    mutationFn: signup,
-    onSuccess: (data) => {
-      alert(data.message);
-    },
-  });
+  const navigate = useNavigate();
 
   // Form submission handler
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    const { email, password, confirm_password } = values;
-    if (email && password && confirm_password) {
-      signupMutation.mutate({ email, password, confirm_password });
+    const { email } = values;
+    if (email) {
+      //signupMutation.mutate({ email, password, confirm_password });
+      navigate("/otp-request");
     }
   };
 
