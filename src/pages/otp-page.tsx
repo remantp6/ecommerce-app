@@ -1,18 +1,20 @@
-import NavLayout from '../components/main-layout/NavLayout';
-import { Col, Row } from 'antd';
-import OtpForm, { FieldType } from '../components/auth/OtpForm';
+import NavLayout from "../components/main-layout/NavLayout";
+import { Col, Row } from "antd";
+import OtpForm, { FieldType } from "../components/auth/OtpForm";
 import type { FormProps } from "antd";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const OtpPage = () => {
   const navigate = useNavigate();
-  
+
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     console.log("Form Submitted:", values);
     navigate("/password-create");
   };
 
-  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
+  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+    errorInfo
+  ) => {
     console.log("Form Submission Failed:", errorInfo);
   };
 
@@ -28,7 +30,13 @@ const OtpPage = () => {
         }}
       >
         <Row justify="center" style={{ width: "100%" }}>
-          <Col xs={24} sm={20} md={16} lg={8}>
+          <Col
+            xs={24}
+            sm={20}
+            md={16}
+            lg={8}
+            style={{ display: "flex", justifyContent: "center" }}
+          >
             <OtpForm onFinish={onFinish} onFinishFailed={onFinishFailed} />
           </Col>
         </Row>
