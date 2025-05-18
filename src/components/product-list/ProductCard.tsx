@@ -32,6 +32,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <div className="relative">
         <Image
           preview={false}
+          loading="lazy"
+          alt={product_name}
           src={image}
           width={"100%"}
           className="!h-[240px] xl:!h-[380px] !object-cover !rounded-[18px]"

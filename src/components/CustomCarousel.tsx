@@ -42,6 +42,7 @@ const CustomCarousel: React.FC = () => {
       <div key={idx} className="relative">
         <Image
           preview={false}
+          loading="lazy"
           src={slide.image}
           alt={`slide-${idx}`}
           width="100%"
