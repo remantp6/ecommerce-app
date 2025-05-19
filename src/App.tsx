@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 // Lazy load all pages
 const Home = lazy(() => import("./pages/home-page"));
@@ -16,10 +17,12 @@ const OtpPage = lazy(() => import("./pages/otp-page"));
 const PasswordCreatePage = lazy(() => import("./pages/password-create-page"));
 const LoaderScreen = lazy(() => import("./components/LoaderScreen"));
 const NoMatch = lazy(() => import("./pages/no-match-page"));
+const ErrorFallback = lazy(() => import("./components/ErrorFallback"));
 
 function App() {
   return (
     <BrowserRouter>
+    <ErrorBoundary fallback={<ErrorFallback/>}>
       <Suspense
         fallback={
           <LoaderScreen/>
@@ -41,6 +44,7 @@ function App() {
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </Suspense>
+      </ErrorBoundary>
     </BrowserRouter>
   );
 }
