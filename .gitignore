@@ -23,8 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-# add assets folder to gitignore
-src/assets/
-
 # Ignore environment files
 .env
