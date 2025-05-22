@@ -1,7 +1,6 @@
 export default {
 	arrowParens: 'always',
 	bracketSpacing: true,
-	jsxBracketSameLine: true,
 	jsxSingleQuote: true,
 	singleQuote: true,
 	semi: true,
