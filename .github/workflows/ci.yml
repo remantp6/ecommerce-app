@@ -1,33 +1,36 @@
 name: ecommerce ci
 
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+    push:
+        branches: ['main']
+    pull_request:
+        branches: ['main']
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-      - name: Use Node.js v22
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22.14.0"
-          cache: "yarn"
+            - name: Use Node.js v22
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '22.14.0'
+                  cache: 'yarn'
 
-      - name: Install dependencies
-        run: yarn install
+            - name: Install dependencies
+              run: yarn install
 
-      - name: Lint code
-        run: yarn lint
+            - name: Check for missing dependencies
+              run: yarn check --verify-tree
 
-      - name: Format code
-        run: yarn prettier --check
+            - name: Lint code
+              run: yarn lint
 
-      - name: Build project
-        run: yarn build
+            - name: Format code
+              run: yarn prettier --check
+
+            - name: Build project
+              run: yarn build
