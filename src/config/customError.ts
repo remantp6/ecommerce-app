@@ -7,7 +7,6 @@ const ERROR_MESSAGES: Record<string, string> = {
 	500: 'An unexpected server error occurred. Please try again later.',
 	GENERIC_ERROR: 'Something went wrong. Please try again.',
 	NETWORK_ERROR: 'Network error, unable to reach the server. Please check your connection.',
-	VALIDATION_ERROR: 'There were validation errors. Please check your input and try again.',
 };
 
 export default ERROR_MESSAGES;
