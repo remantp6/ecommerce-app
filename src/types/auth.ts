@@ -1,6 +1,10 @@
-// define the success response type for the API
-export interface ApiSuccessResponse<T> {
-	success: boolean;
-	message: string;
-	data?: T;
+export interface SignupPayload {
+	email: string;
+	name: string;
+	password: string;
+	phone: string;
+}
+
+export interface SignupResponse {
+	data: string;
 }
