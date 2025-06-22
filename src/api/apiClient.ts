@@ -7,12 +7,12 @@ export const apiClient = {
 		return response.data;
 	},
 
-	post: async <T>(endpoint: string, payload: unknown): Promise<T> => {
+	post: async <R, T>(endpoint: string, payload: R): Promise<T> => {
 		const response = await axiosInstance.post<T>(endpoint, payload);
 		return response.data;
 	},
 
-	patch: async <T>(endpoint: string, payload: unknown): Promise<T> => {
+	patch: async <R, T>(endpoint: string, payload: R): Promise<T> => {
 		const response = await axiosInstance.patch<T>(endpoint, payload);
 		return response.data;
 	},
