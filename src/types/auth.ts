@@ -15,5 +15,5 @@ export interface SignInPayloadTypes {
 }
 export interface SignInResponseTypes {
 	token: string;
-	access_token: string;
+	refresh_token: string;
 }

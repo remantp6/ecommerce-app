@@ -1,5 +1,6 @@
 import axios from 'axios';
 import ERROR_MESSAGES from '../config/customError';
+import toast from 'react-hot-toast';
 
 // Create an Axios instance with a base URL and default headers
 const axiosInstance = axios.create({
@@ -39,7 +40,7 @@ axiosInstance.interceptors.response.use(
 		}
 
 		// add toast
-		// toast.error(message); // Display the error message as a toast notification
+		toast.error(message); // Display the error message as a toast notification
 
 		return Promise.reject(new Error(message)); // Reject the promise with the error message
 	},
