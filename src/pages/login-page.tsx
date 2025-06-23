@@ -4,6 +4,9 @@ import main from '../assets/main.png';
 import type { FormProps } from 'antd';
 import LoginForm from '../components/auth/LoginForm';
 import { useLogin } from '../hooks/auth-hooks/useLogin';
+import toast from 'react-hot-toast';
+import { setSessionTokens } from '../utils/sessionStorage';
+import { useNavigate } from 'react-router-dom';
 
 type FieldType = {
 	email: string;
@@ -12,20 +15,18 @@ type FieldType = {
 };
 
 const Login = () => {
+	const navigate = useNavigate();
 	const loginMutation = useLogin();
+
 	const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
 		loginMutation.mutate(values, {
-			onSuccess: () => {
-				console.log('Login successful!');
-				// Navigate to the dashboard or home page after successful login
-			},
-			onError: (error) => {
-				console.error('Login failed:', error);
-				// Handle login error (e.g., show a notification)
+			onSuccess: (response) => {
+				const { token, refresh_token } = response.data;
+				setSessionTokens(token, refresh_token);
+				toast.success('Login successful!');
+				navigate('/');
 			},
 		});
-		console.log('Login form values:', values);
-		// Implement your login logic here
 	};
 
 	const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {

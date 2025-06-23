@@ -19,21 +19,12 @@ const SignUp = () => {
 
 	// Form submission handler
 	const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-		//	const { email, name, password } = values;
 		signupMutation.mutate(values, {
-			onSuccess: () => {
-				toast.success('Signup successful!');
-				navigate('/otp-request');
-			},
-			onError: (error) => {
-				toast.error(error.message); // This comes from axios interceptor
+			onSuccess: (data) => {
+				toast.success(data.message);
+				navigate('/login');
 			},
 		});
-		// console.log('Form Values:', values);
-		// if (email) {
-		// 	//signupMutation.mutate({ email, password, confirm_password });
-		// 	navigate('/otp-request');
-		// }
 	};
 
 	const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
